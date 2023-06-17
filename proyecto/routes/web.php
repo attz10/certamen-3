@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\ImagenesController;
+use App\Http\Controllers\AdministradoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('/artistas',[ArtistasController::class,'index'])->name('artistas.inde
 Route::get('/imagenes/{artista}/subir',[ImagenesController::class,'index'])->name('imagenes.index');
 Route::post('/imagenes',[ImagenesController::class,'store'])->name('imagenes.store');
 Route::get('/imagenes/{cuenta}',[ImagenesController::class,'show'])->name('imagenes.show');
+
+Route::get('/administradores',[AdministradoresController::class,'index'])->name('administradores.index');
