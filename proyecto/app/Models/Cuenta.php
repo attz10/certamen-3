@@ -9,7 +9,8 @@ class Cuenta extends Model
 {
     use HasFactory;
 
-    protected $table = 'cuentas';
+    protected $primaryKey = 'user';
+    public $incrementing = false;
     protected $keyType = 'string';
 
     public function perfil(){
