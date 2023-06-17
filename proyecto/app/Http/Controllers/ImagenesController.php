@@ -31,11 +31,10 @@ class ImagenesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($artista);
         $imagen = new Imagen();
         $imagen->titulo = $request->titulo;
         $imagen->archivo = $request->imagen->store('public/artistas');
-        $imagen->cuenta_user = $artista;
+        $imagen->cuenta_user = $request->user;
         $imagen->save();
         return redirect()->route('artistas.index');
     }
