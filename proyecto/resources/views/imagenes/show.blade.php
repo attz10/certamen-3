@@ -22,5 +22,18 @@
                 </form>
             </div>
         </div>
+        <div class="col">
+            @foreach ($imagenes as $imagen)
+                <div class="card" style="width: 24rem;">
+                    <img src="{{Storage::url($imagen->archivo)}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{$imagen->titulo}}</h5>
+                        <p class="card-text text-center">subida por el artista: <b>{{$imagen->cuenta_user}}</b></p>
+                        <a href="{{route('imagenes.edit',$imagen->id)}}" class="btn btn-info">Editar</a>
+                        <a href="" class="btn btn-danger">Borrar</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection

@@ -46,23 +46,32 @@ class ImagenesController extends Controller
      */
     public function show(Cuenta $cuenta)
     {
-        return view('imagenes.show', compact('cuenta'));
+        /* dd($cuenta); */
+        $imagenes = Imagen::where('cuenta_user','=',$cuenta->user)->get();
+        /* dd($imagenes); */
+        return view('imagenes.show', compact('cuenta','imagenes'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Imagen $imagen)
     {
-        //
+        return view('imagenes.edit',compact('imagen'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Imagen $imagen, Request $request)
     {
-        //
+        $cuenta = Cuenta::find($imagen->cuenta_user);
+        /* dd($cuenta); */
+        /* $cuenta = $cuenta->user; */
+        $imagen->titulo = $request->titulo;
+        $imagen->save();
+        return redirect()->route('imagenes.show',$cuenta->user);
+
     }
 
     /**
