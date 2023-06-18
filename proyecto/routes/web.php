@@ -25,7 +25,7 @@ Route::get('/',[HomeController::class,'index'])->name('home.login');
 
 Route::get('/artistas',[ArtistasController::class,'index'])->name('artistas.index');
 
-Route::get('/imagenes/{artista}/subir',[ImagenesController::class,'index'])->name('imagenes.index');
+Route::get('/imagenes/all',[ImagenesController::class,'index'])->name('imagenes.index');
 Route::post('/imagenes',[ImagenesController::class,'store'])->name('imagenes.store');
 Route::get('/imagenes/{cuenta}',[ImagenesController::class,'show'])->name('imagenes.show');
 

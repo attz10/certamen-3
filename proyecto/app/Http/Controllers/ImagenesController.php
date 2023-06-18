@@ -15,7 +15,9 @@ class ImagenesController extends Controller
      */
     public function index()
     {
-        return view('imagenes.index');
+        $imagenes = Imagen::all();
+        $artistas = Cuenta::where('perfil_id',1)->get();
+        return view('imagenes.index', compact('imagenes', 'artistas'));
     }
 
     /**

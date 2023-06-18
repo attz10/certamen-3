@@ -1,21 +1,27 @@
-{{-- @extends('layouts.master')
+@extends('layouts.master')
 
 @section('principal')
     <div class="row">
-        <div class="col-6">
-            <div class="card">
-                <form method="POST" action="{{route('imagenes.store')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-2">
-                        <label for="titulo" class="form-label">Titulo de la imagen</label>
-                        <input type="text" id="titulo" name="titulo" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="imagen" class="form-label">Imagen:</label>
-                        <input type="file" id="imagen" name="imagen" class="form-control">
-                    </div>
-                    <button class="btn btn-success" type="submit">subir imagen</button>
-                </form>
-            </div>
+        <div class="col">
+            <form action="">
+                <label class="form-label" for="filtrado">Filtrado por artista:</label>
+                <select name="filtrado" id="filtrado" class="form-control">
+                    @foreach ($artistas as $artista)
+                        <option value="{{$artista->user}}">{{$artista->user}}</option>
+                    @endforeach
+                </select>
+            </form>
         </div>
-    </div> --}}
+    </div>
+    <div class="row">
+        @foreach ($imagenes as $imagen)
+            <div class="card" style="width: 24rem;">
+                <img src="{{Storage::url($imagen->archivo)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{$imagen->titulo}}</h5>
+                    <p class="card-text text-center">subida por el artista: <b>{{$imagen->cuenta_user}}</b></p>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection
