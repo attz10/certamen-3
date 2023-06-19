@@ -7,6 +7,7 @@ use App\Models\Cuenta;
 use App\Models\Perfil;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ImagenesController extends Controller
 {
@@ -77,8 +78,12 @@ class ImagenesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Imagen $imagen)
     {
-        //
+        /* dd('hola'); */
+        $cuenta = Cuenta::find($imagen->cuenta_user);
+        Storage::delete($imagen->archivo);
+        DB::table('imagenes')->where('id','=',$imagen->id)->delete();
+        return redirect()->route('imagenes.show',$cuenta->user);
     }
 }

@@ -2,7 +2,7 @@
 
 @section('principal')
     <div class="row">
-        <div class="col-6">
+        <div class="col-3">
             <div class="card">
                 <form method="POST" action="{{route('imagenes.store')}}" enctype="multipart/form-data">
                     @csrf
@@ -22,18 +22,26 @@
                 </form>
             </div>
         </div>
-        <div class="col">
-            @foreach ($imagenes as $imagen)
-                <div class="card" style="width: 24rem;">
-                    <img src="{{Storage::url($imagen->archivo)}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{$imagen->titulo}}</h5>
-                        <p class="card-text text-center">subida por el artista: <b>{{$imagen->cuenta_user}}</b></p>
-                        <a href="{{route('imagenes.edit',$imagen->id)}}" class="btn btn-info">Editar</a>
-                        <a href="" class="btn btn-danger">Borrar</a>
+        <div class="col-9">
+            <div class="card-group">
+                @foreach ($imagenes as $imagen)
+                    <div class="card" style="width: 24rem;">
+                        <img src="{{Storage::url($imagen->archivo)}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{$imagen->titulo}}</h5>
+                            <p class="card-text text-center">subida por el artista: <b>{{$imagen->cuenta_user}}</b></p>
+                            <div class="btn-group">
+                                <a href="{{route('imagenes.edit',$imagen->id)}}" class="btn btn-info rounded">Editar</a>
+                                <form method="POST" action="{{route('imagenes.destroy',$imagen->id)}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

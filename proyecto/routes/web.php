@@ -30,5 +30,6 @@ Route::post('/imagenes',[ImagenesController::class,'store'])->name('imagenes.sto
 Route::get('/imagenes/{cuenta}',[ImagenesController::class,'show'])->name('imagenes.show');
 Route::get('/imagnes/{imagen}/edit',[ImagenesController::class,'edit'])->name('imagenes.edit');
 Route::put('/imagenes/{imagen}',[ImagenesController::class,'update'])->name('imagenes.update');
+Route::delete('/imagenes/{imagen}',[ImagenesController::class,'destroy'])->name('imagenes.destroy');
 
 Route::get('/administradores',[AdministradoresController::class,'index'])->name('administradores.index');
