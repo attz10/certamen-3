@@ -21,11 +21,12 @@ use App\Http\Controllers\AdministradoresController;
     return view('welcome');
 }); */
 
-Route::get('/',[HomeController::class,'index'])->name('home.login');
+Route::get('/user/login',[HomeController::class,'index'])->name('home.login');
 
 Route::get('/artistas',[ArtistasController::class,'index'])->name('artistas.index');
+Route::post('/artistas/filtrado',[ArtistasController::class,'index_artista'])->name('artistas.index_artista');
 
-Route::get('/imagenes/all',[ImagenesController::class,'index'])->name('imagenes.index');
+Route::get('/',[ImagenesController::class,'index'])->name('imagenes.index');
 Route::post('/imagenes',[ImagenesController::class,'store'])->name('imagenes.store');
 Route::get('/imagenes/{cuenta}',[ImagenesController::class,'show'])->name('imagenes.show');
 Route::get('/imagnes/{imagen}/edit',[ImagenesController::class,'edit'])->name('imagenes.edit');

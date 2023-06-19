@@ -22,6 +22,12 @@ class ArtistasController extends Controller
         return view('artistas.index',compact('artistas','perfil'));
     }
 
+    public function index_artista(Request $request)
+    {
+        $imagenes = Imagen::where('cuenta_user','=',$request->filtrado)->get();
+        /* dd($imagenes); */
+        return view('artistas.index_user',compact('imagenes'));
+    }
     /**
      * Show the form for creating a new resource.
      */
