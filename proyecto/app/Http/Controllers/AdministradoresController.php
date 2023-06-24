@@ -61,8 +61,10 @@ class AdministradoresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cuenta $cuenta)
     {
-        //
+        //dd($cuenta);
+        $cuenta->delete();
+        return redirect()->route('administradores.index');
     }
 }

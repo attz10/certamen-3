@@ -34,3 +34,4 @@ Route::put('/imagenes/{imagen}',[ImagenesController::class,'update'])->name('ima
 Route::delete('/imagenes/{imagen}',[ImagenesController::class,'destroy'])->name('imagenes.destroy');
 
 Route::get('/administradores',[AdministradoresController::class,'index'])->name('administradores.index');
+Route::delete('/administradores/{cuenta}',[AdministradoresController::class,'destroy'])->name('administradores.destroy');
