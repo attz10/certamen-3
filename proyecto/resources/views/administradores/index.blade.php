@@ -43,7 +43,7 @@
                                                 <span class="material-icons">delete</span>
                                             </button>
                                         </span>
-                                    <td><a href="" class="btn btn-warning"><span class="material-icons">image</span></a></td>
+                                    <td><a href="{{route('administradores.showimagen',$cuenta->user)}}" class="btn btn-warning"><span class="material-icons">image</span></a></td>
                                     @endif
                                 @endforeach
                             </td>

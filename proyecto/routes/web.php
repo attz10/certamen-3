@@ -35,3 +35,6 @@ Route::delete('/imagenes/{imagen}',[ImagenesController::class,'destroy'])->name(
 
 Route::get('/administradores',[AdministradoresController::class,'index'])->name('administradores.index');
 Route::delete('/administradores/{cuenta}',[AdministradoresController::class,'destroy'])->name('administradores.destroy');
+Route::get('/administradores/{cuenta}/imagen',[AdministradoresController::class,'showimagen'])->name('administradores.showimagen');
+Route::get('/administradores/{imagen}/imagen/edit',[AdministradoresController::class,'editimagen'])->name('administradores.editimagen');
+Route::put('/administradores/{imagen}/imagen',[AdministradoresController::class,'updateimagen'])->name('administradores.updateimagen');
