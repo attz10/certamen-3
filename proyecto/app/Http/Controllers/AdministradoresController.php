@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cuenta;
 use App\Models\Perfil;
 use App\Models\Imagen;
+use Illuminate\Support\Facades\Hash;
 
 class AdministradoresController extends Controller
 {
@@ -48,7 +49,7 @@ class AdministradoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editimagen(Imagen $imagen,Request $request)
+    public function editimagen(Imagen $imagen)
     {
         return view('administradores.editimagen',compact('imagen'));
     }
@@ -64,6 +65,27 @@ class AdministradoresController extends Controller
         $imagen->motivo_ban = $request->comentario;
         $imagen->baneada = true;
         $imagen->save();
+        return redirect()->route('administradores.index');
+    }
+
+    public function editcuenta(Cuenta $cuenta)
+    {
+        return view('administradores.editcuenta',compact('cuenta'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updatecuenta(Request $request, Cuenta $cuenta)
+    {
+        /* $imagen = Imagen::find($imagen->cuenta_user); */
+        /* dd($cuenta); */
+        /* $cuenta = $cuenta->user; */
+        $cuenta->user = $request->user;
+        $cuenta->password = Hash::make($request->password);
+        $cuenta->nombre = $request->nombre;
+        $cuenta->apellido = $request->apellido;
+        $cuenta->save();
         return redirect()->route('administradores.index');
     }
 

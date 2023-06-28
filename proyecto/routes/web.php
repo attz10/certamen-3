@@ -21,7 +21,7 @@ use App\Http\Controllers\AdministradoresController;
     return view('welcome');
 }); */
 
-Route::get('/user/login',[HomeController::class,'index'])->name('home.login');
+Route::get('/home/login',[HomeController::class,'index'])->name('home.login');
 
 Route::get('/artistas',[ArtistasController::class,'index'])->name('artistas.index');
 Route::post('/artistas/filtrado',[ArtistasController::class,'index_artista'])->name('artistas.index_artista');
@@ -38,3 +38,5 @@ Route::delete('/administradores/{cuenta}',[AdministradoresController::class,'des
 Route::get('/administradores/{cuenta}/imagen',[AdministradoresController::class,'showimagen'])->name('administradores.showimagen');
 Route::get('/administradores/{imagen}/imagen/edit',[AdministradoresController::class,'editimagen'])->name('administradores.editimagen');
 Route::put('/administradores/{imagen}/imagen',[AdministradoresController::class,'updateimagen'])->name('administradores.updateimagen');
+Route::get('/administradores/{cuenta}/edit',[AdministradoresController::class,'editcuenta'])->name('administradores.editcuenta');
+Route::put('/administradores/{cuenta}/edit',[AdministradoresController::class,'updatecuenta'])->name('administradores.updatecuenta');

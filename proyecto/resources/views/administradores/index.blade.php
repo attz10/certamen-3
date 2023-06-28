@@ -32,7 +32,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="" class="btn btn-info"><span class="material-icons">edit</span></a>
+                                <a href="{{route('administradores.editcuenta',$cuenta->user)}}" class="btn btn-info"><span class="material-icons">edit</span></a>
                             </td>
                             <td>
                                 @foreach ($perfiles as $perfil)
