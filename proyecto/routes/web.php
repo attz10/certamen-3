@@ -22,6 +22,8 @@ use App\Http\Controllers\AdministradoresController;
 }); */
 
 Route::get('/home/login',[HomeController::class,'index'])->name('home.login');
+Route::get('/home/crear',[HomeController::class,'singin'])->name('home.singin');
+Route::post('/home/crear',[HomeController::class,'store'])->name('home.store');
 
 Route::get('/artistas',[ArtistasController::class,'index'])->name('artistas.index');
 Route::post('/artistas/filtrado',[ArtistasController::class,'index_artista'])->name('artistas.index_artista');

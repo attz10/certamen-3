@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cuenta extends Model
 {
     use HasFactory,SoftDeletes;
-
+    
+    protected $table = 'cuentas';
     protected $primaryKey = 'user';
     public $incrementing = false;
     protected $keyType = 'string';

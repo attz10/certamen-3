@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cuenta;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -12,6 +15,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home.login');
+    }
+
+    public function singin()
+    {
+        return view('home.create');
     }
 
     /**
@@ -27,7 +35,14 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cuenta = new Cuenta();
+        $cuenta->user = $request->user;
+        $cuenta->password = Hash::make($request->password);
+        $cuenta->nombre = $request->nombre;
+        $cuenta->apellido = $request->apellido;
+        $cuenta->perfil_id = 1;
+        $cuenta->save();
+        return redirect()->route('imagenes.index');
     }
 
     /**
