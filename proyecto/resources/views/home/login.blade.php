@@ -1,11 +1,12 @@
 @extends('layouts.master')
 
 @section('principal')
-    <form action="">
-        <div class="row">
-            <div class="col-6">
-                <div class="card">
-                    <form action="">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{{route('usuarios.login')}}">
+                        @csrf
                         <div class="mb-2">
                             <label for="user" class="form-label">User</label>
                             <input type="text" name="user" id="user" class="form-control">
@@ -14,9 +15,19 @@
                             <label for="password" class="form-label">Contraseña</label>
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
+                        <button type="submit" class="btn btn-success">Iniciar Sesion</button>
                     </form>
                 </div>
             </div>
+            @if($errors->any())
+                <div class="alert alert-warning mt-2">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
-    </form>
+    </div>
 @endsection

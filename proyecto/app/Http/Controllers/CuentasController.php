@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Cuenta;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\CuentaRequest;
-use Gate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class CuentasController extends Controller
 {
+
     public function __construct() {
-        $this->middleware('auth')->except('index','singin');
+        $this->middleware('auth')->except('login');
     }
 
     /**
@@ -20,12 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.login');
-    }
-
-    public function singin()
-    {
-        return view('home.create');
+        $cuentas = Cuenta::all();
+        $perfiles = Perfil::all();
+        return view('cuentas.index',compact('cuentas','perfiles'));
     }
 
     /**
@@ -39,16 +34,9 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CuentaRequest $request)
+    public function store(Request $request)
     {
-        $cuenta = new Cuenta();
-        $cuenta->user = $request->user;
-        $cuenta->password = Hash::make($request->password);
-        $cuenta->nombre = $request->nombre;
-        $cuenta->apellido = $request->apellido;
-        $cuenta->perfil_id = 1;
-        $cuenta->save();
-        return redirect()->route('imagenes.index');
+        //
     }
 
     /**
@@ -81,5 +69,22 @@ class HomeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function login(Request $request){
+        /* dd($request->only('user','password')); */
+        $credenciales = $request->only('user','password');
+        if (Auth::attempt($credenciales)){
+            $cuenta = Cuenta::where('user',$request->user)->first();
+            return redirect()->route('imagenes.index');
+        }
+        else{
+            return back()->withErrors('Credenciales incorrectas');
+        }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('imagenes.index');
     }
 }

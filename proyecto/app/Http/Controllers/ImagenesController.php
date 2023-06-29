@@ -8,9 +8,14 @@ use App\Models\Perfil;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Gate;
 
 class ImagenesController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      */

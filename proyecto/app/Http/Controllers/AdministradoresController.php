@@ -7,14 +7,23 @@ use App\Models\Cuenta;
 use App\Models\Perfil;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Hash;
+use Gate;
 
 class AdministradoresController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+
+        if(Gate::denies('cuenta')){
+            return redirect()->route('imagenes.index');
+        }
+
         $cuentas = Cuenta::all();
         $perfiles = Perfil::all();
         return view('administradores.index', compact('cuentas', 'perfiles'));

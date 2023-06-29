@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\ImagenesController;
 use App\Http\Controllers\AdministradoresController;
+use App\Http\Controllers\CuentasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,6 @@ Route::get('/administradores/{imagen}/imagen/edit',[AdministradoresController::c
 Route::put('/administradores/{imagen}/imagen',[AdministradoresController::class,'updateimagen'])->name('administradores.updateimagen');
 Route::get('/administradores/{cuenta}/edit',[AdministradoresController::class,'editcuenta'])->name('administradores.editcuenta');
 Route::put('/administradores/{cuenta}/edit',[AdministradoresController::class,'updatecuenta'])->name('administradores.updatecuenta');
+
+Route::post('/usuarios/login',[CuentasController::class,'login'])->name('usuarios.login');
+Route::get('/usuarios/logout',[CuentasController::class,'logout'])->name('usuarios.logout');
