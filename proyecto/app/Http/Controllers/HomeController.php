@@ -12,7 +12,7 @@ use Gate;
 class HomeController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except('index','singin');
+        $this->middleware('auth')->except('index','singin','store');
     }
 
     /**
@@ -48,7 +48,7 @@ class HomeController extends Controller
         $cuenta->apellido = $request->apellido;
         $cuenta->perfil_id = 1;
         $cuenta->save();
-        return redirect()->route('imagenes.index');
+        return redirect()->route('home.login');
     }
 
     /**

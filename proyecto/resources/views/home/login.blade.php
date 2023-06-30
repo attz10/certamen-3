@@ -4,6 +4,9 @@
     <div class="row">
         <div class="col-6">
             <div class="card">
+                <div class="card-header">
+                    <h3>Ingrese credenciales para ininciar sesion:</h3>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{route('usuarios.login')}}">
                         @csrf
