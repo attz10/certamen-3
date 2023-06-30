@@ -2,7 +2,14 @@
 
 @section('principal')
     <div class="row">
-        <div class="col-3"></div>
+        <div class="col-3">
+            <h4>tipos de cuentas</h4>
+            <ul>
+                <li>Artista</li>
+                <li>Administradores</li>
+                <li>Usuarios sin cuenta(solo ven imagenes)</li>
+            </ul>
+        </div>
         <div class="col-6">
             <div class="col-12 col-lg-8 order-last order-lg-first">
                 <table class="table table-bordered table-striped table-hover">

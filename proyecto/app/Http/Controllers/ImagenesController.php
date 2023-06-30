@@ -42,7 +42,7 @@ class ImagenesController extends Controller
         $imagen = new Imagen();
         $imagen->titulo = $request->titulo;
         $imagen->archivo = $request->imagen->store('public/artistas');
-        $imagen->cuenta_user = $request->user;
+        $imagen->cuenta_user = Auth::user()->user;
         $imagen->save();
         return redirect()->route('artistas.index');
     }
