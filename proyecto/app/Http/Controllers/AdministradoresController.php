@@ -20,9 +20,9 @@ class AdministradoresController extends Controller
     public function index()
     {
 
-        if(Gate::denies('cuenta')){
+        /* if(Gate::denies('cuenta')){
             return redirect()->route('imagenes.index');
-        }
+        } */
 
         $cuentas = Cuenta::all();
         $perfiles = Perfil::all();

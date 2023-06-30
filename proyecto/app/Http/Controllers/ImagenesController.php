@@ -8,6 +8,7 @@ use App\Models\Perfil;
 use App\Models\Imagen;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Gate;
 
 class ImagenesController extends Controller
@@ -44,7 +45,7 @@ class ImagenesController extends Controller
         $imagen->archivo = $request->imagen->store('public/artistas');
         $imagen->cuenta_user = Auth::user()->user;
         $imagen->save();
-        return redirect()->route('artistas.index');
+        return redirect()->route('imagenes.show',Auth::user()->user);
     }
 
     /**

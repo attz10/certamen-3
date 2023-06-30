@@ -17,13 +17,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('home.singin')}}">Crear cuenta</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('home.login')}}">Iniciar sesion</a>
-            </li>
-            @if (Gate::allows('cuenta'))
+            @if (Auth::guest())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home.singin')}}">Crear cuenta</a>
+                </li>
+            @endif
+            @if (Auth::guest())
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home.login')}}">Iniciar sesion</a>
+                </li>
+            @endif
+            @if (Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('usuarios.logout')}}">Cerrar sesion</a>
                 </li>
@@ -33,7 +37,7 @@
                     <a class="nav-link" href="{{route('imagenes.show',Auth::user()->user)}}">Artista</a>
                 </li>
             @endif
-            @if((Gate::allows('cuenta')) && (Auth::user()->perfil_id==2))
+            @if((Gate::allows('cuenta')==false) && (Auth::check()))
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('administradores.index')}}">Administrador</a>
                 </li>

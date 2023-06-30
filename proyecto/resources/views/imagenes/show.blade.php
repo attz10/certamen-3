@@ -19,25 +19,29 @@
             </div>
         </div>
         <div class="col-9">
-            <div class="card-group">
-                @foreach ($imagenes as $imagen)
+            @foreach ($imagenes as $imagen)
+                <div class="card-group">
                     <div class="card" style="width: 24rem;">
-                        <img src="{{Storage::url($imagen->archivo)}}" class="card-img-top" alt="...">
+                        <img src="{{Storage::url($imagen->archivo)}}" style="width: 18rem" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{$imagen->titulo}}</h5>
                             <p class="card-text text-center">subida por el artista: <b>{{$imagen->cuenta_user}}</b></p>
+                            @if ($imagen->baneada == true)
+                                <label for="comentario" class="form-label">Motivo de Ban:</label>
+                                <textarea class="form-control" name="comentario" id="comentario">{{$imagen->motivo_ban}}</textarea>
+                            @endif
                             <div class="btn-group">
-                                <a href="{{route('imagenes.edit',$imagen->id)}}" class="btn btn-info rounded">Editar</a>
+                                <a href="{{route('imagenes.edit',$imagen->id)}}" class="btn btn-info rounded mt-2">Editar</a>
                                 <form method="POST" action="{{route('imagenes.destroy',$imagen->id)}}">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                    <button type="submit" class="btn btn-danger mt-2">Borrar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
